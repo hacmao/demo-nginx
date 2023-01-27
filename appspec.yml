@@ -3,4 +3,6 @@ os: linux
 files:
   - source: index.html
     destination: /usr/share/nginx/html
+  - source: meoden.jpeg
+    destination: /usr/share/nginx/html
 file_exists_behavior: OVERWRITE
