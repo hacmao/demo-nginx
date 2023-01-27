@@ -1,0 +1,6 @@
+version: 0.0
+os: linux
+files:
+  - source: index.html
+    destination: /usr/share/nginx/html
+file_exists_behavior: OVERWRITE
