@@ -7,6 +7,7 @@ pipeline {
     kubernetes {
       label "jenkins-docker-agent"
       idleMinutes 5
+      defaultContainer "docker"
     }
   }
   stages {
