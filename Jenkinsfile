@@ -5,7 +5,7 @@ def uatInput = new uatInput()
 pipeline {
   agent {
     kubernetes {
-      label "jenkins-docker-agent"
+      inheritFrom "default"
       idleMinutes 5
       defaultContainer "docker"
     }
