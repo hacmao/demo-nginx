@@ -1,10 +1,8 @@
 pipeline {
   agent {
     kubernetes {
-      label "kubernetes"
+      label "jenkins-docker-agent"
       idleMinutes 5
-      yamlFile "build-pod.yaml"
-      defaultContainer "docker"
     }
   }
   stages {
