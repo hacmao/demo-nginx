@@ -15,7 +15,9 @@ pipeline {
     stage('Build') {
       steps {
         sh 'echo "Hello world"'
-        MYVAR = outputOf('echo do_something')
+        script {
+          MYVAR = outputOf('echo do_something')
+        }
       }
     }
     
