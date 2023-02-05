@@ -1,4 +1,7 @@
+#!/usr/bin/env groovy 
 def MYVAR
+
+def outputOf(cmd) { return sh(returnStdout:true,script:cmd).trim(); }
 
 pipeline {
   agent {
