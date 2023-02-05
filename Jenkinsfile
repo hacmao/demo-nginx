@@ -12,7 +12,7 @@ pipeline {
     stage('Build') {
       steps {
         sh 'echo "Hello world"'
-        MYVAR = "test variable"
+        MYVAR = outputOf('echo do_something')
       }
     }
     
