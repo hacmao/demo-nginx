@@ -17,14 +17,14 @@ pipeline {
         sh 'echo "Hello world"'
         script {
           MYVAR = outputOf('echo do_something')
+          sh "echo MYVAR has been set to: '${MYVAR}'"
         }
       }
     }
     
     stage ('Test') {
       steps {
-        sh 'echo "${MYVAR}"'
-        sh 'echo $MYVAR'
+        sh "echo MYVAR has been set to: '${MYVAR}'"
       }
     }
 
