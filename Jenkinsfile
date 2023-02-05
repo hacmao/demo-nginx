@@ -1,6 +1,4 @@
-@Library('shared-library')
-import com.mcnz.uatInput
-def uatInput = new uatInput()
+def MYVAR
 
 pipeline {
   agent {
@@ -14,14 +12,14 @@ pipeline {
     stage('Build') {
       steps {
         sh 'echo "Hello world"'
+        MYVAR="test variable"
       }
     }
-    stage ('Run only if approval exists') {
-      when {
-          expression { uatInput.buildIsUatApproved() }
-      }
+    
+    stage ('Test') {
       steps {
-          echo "The build has been approved!!!"
+        sh 'echo "${MYVAR}"'
+        sh 'echo $MYVAR'
       }
     }
 
