@@ -7,7 +7,18 @@ pipeline {
   environment {
     GIT_CRE = credentials("Github Hacmao")
   }
-  agent none
+  agent {
+    kubernetes {
+      inheritFrom "default"
+      idleMinutes 5
+      defaultContainer "docker"
+    }
+    kubernetes {
+      inheritFrom "git"
+      idleMinutes 5
+      defaultContainer "git"
+    }
+  }
   stages {
     stage('Checkout') {
       steps {
