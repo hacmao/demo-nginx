@@ -9,14 +9,9 @@ pipeline {
   }
   agent {
     kubernetes {
-      inheritFrom "default"
+      inheritFrom "default git"
       idleMinutes 5
       defaultContainer "docker"
-    }
-    kubernetes {
-      inheritFrom "git"
-      idleMinutes 5
-      defaultContainer "git"
     }
   }
   stages {
