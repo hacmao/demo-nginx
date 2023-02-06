@@ -18,6 +18,13 @@ pipeline {
     stage('Checkout') {
       steps {
 //         git branch: 'main', credentialsId: 'Github Hacmao', url: 'https://github.com/hacmao/2048'
+        agent {
+          kubernetes {
+            inheritFrom "git"
+            idleMinutes 5
+            defaultContainer "git"
+          }
+        }
         withCredentials([gitUsernamePassword(credentialsId: 'Github Hacmao', gitToolName: 'Default')]) {
           git branch: 'main', url: 'https://github.com/hacmao/2048'
           sh "git status"
