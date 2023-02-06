@@ -16,8 +16,10 @@ pipeline {
   }
   stages {
     stage('Test2') {
-      sh 'pwd'
-      sh 'ls'
+      steps {
+        sh 'pwd'
+        sh 'ls'
+      }
     }
     stage('Checkout') {
       steps {
