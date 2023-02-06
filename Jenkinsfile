@@ -23,19 +23,17 @@ pipeline {
     }
     stage('Checkout') {
       steps {
-//         git branch: 'main', credentialsId: 'Github Hacmao', url: 'https://github.com/hacmao/2048'
-       
         container("git") {
           dir("../2048") {
             withCredentials([gitUsernamePassword(credentialsId: 'Github Hacmao', gitToolName: 'Default')]) {
               git branch: 'main', url: 'https://github.com/hacmao/2048'
-              sh "ls -la ."
-              sh "ls -la .."
               sh "git config --global --add safe.directory '*'"
-              sh "git status"
               sh "git checkout -b feature/test2"
               sh 'echo "test PR2" > test2'
+              sh 'git status'
               sh 'git add .'
+              sh "git config --global user.name '${GIT_CRE_USR}'"
+              sh "git config --global user.email 'nguyentuanhieptuki@gmail.com'"
               sh 'git commit -m "Test PR2"'
               sh 'git push --set-upstream origin feature/test2'
             }
