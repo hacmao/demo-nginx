@@ -15,8 +15,8 @@ pipeline {
     stage('Checkout') {
       steps {
         git branch: 'main', credentialsId: 'Github Hacmao', url: 'https://github.com/hacmao/2048'
-        ls
-        pwd
+        sh "ls"
+        sh "pwd"
       }
     }
     stage('Build') {
