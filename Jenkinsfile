@@ -12,6 +12,13 @@ pipeline {
     }
   }
   stages {
+    stage('Checkout') {
+      steps {
+        git branch: 'main', credentialsId: 'Github Hacmao', url: 'https://github.com/hacmao/2048'
+        ls
+        pwd
+      }
+    }
     stage('Build') {
       steps {
         sh 'echo "Hello world"'
