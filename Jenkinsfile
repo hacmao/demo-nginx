@@ -7,13 +7,7 @@ pipeline {
   environment {
     GIT_CRE = credentials("Github Hacmao")
   }
-  agent {
-    kubernetes {
-      inheritFrom "default"
-      idleMinutes 5
-      defaultContainer "docker"
-    }
-  }
+  agent none
   stages {
     stage('Checkout') {
       steps {
@@ -46,6 +40,13 @@ pipeline {
       }
     }
     stage('Build') {
+      agent {
+        kubernetes {
+          inheritFrom "default"
+          idleMinutes 5
+          defaultContainer "docker"
+        }
+      }
       steps {
         sh 'echo "Hello world"'
         script {
@@ -56,6 +57,13 @@ pipeline {
     }
     
     stage ('Test') {
+       agent {
+        kubernetes {
+          inheritFrom "default"
+          idleMinutes 5
+          defaultContainer "docker"
+        }
+      }
       steps {
         sh "echo MYVAR has been set to: '${MYVAR}'"
       }
