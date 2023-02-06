@@ -26,9 +26,12 @@ pipeline {
 //         git branch: 'main', credentialsId: 'Github Hacmao', url: 'https://github.com/hacmao/2048'
        
         container("git") {
-          dir("2048") {
+          dir("../2048") {
             withCredentials([gitUsernamePassword(credentialsId: 'Github Hacmao', gitToolName: 'Default')]) {
               git branch: 'main', url: 'https://github.com/hacmao/2048'
+              sh "ls -la ."
+              sh "ls -la .."
+              sh "git config --global --add safe.directory '*'"
               sh "git status"
               sh "git checkout -b feature/test2"
               sh 'echo "test PR2" > test2'
