@@ -4,6 +4,9 @@ def MYVAR
 def outputOf(cmd) { return sh(returnStdout:true,script:cmd).trim(); }
 
 pipeline {
+  environment {
+    GIT_CRE = credentials("Github Hacmao")
+  }
   agent {
     kubernetes {
       inheritFrom "default"
@@ -15,6 +18,7 @@ pipeline {
     stage('Checkout') {
       steps {
         git branch: 'main', credentialsId: 'Github Hacmao', url: 'https://github.com/hacmao/2048'
+        sh "echo Username: '${GIT_CRE_USR}' and password: '${GIT_CRE_PSW}'"
         httpRequest acceptType: 'APPLICATION_JSON', 
           authentication: 'Github Hacmao', 
           contentType: 'APPLICATION_JSON', 
